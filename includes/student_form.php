@@ -6,16 +6,17 @@
  * Time: 13:01
  */
 
-$addingStudent = false;
 
-if (!isset($studentModel)) {
-    $studentModel = new StudentModel("", "", "");
-    $addingStudent = true;
-}
+    $addingStudent = false;
+
+    if (!isset($studentModel)) {
+        $studentModel = new StudentModel("", "", "", "", "", "");
+        $addingStudent = true;
+    }
 
 ?>
 
-<form action="" method="post">
+<form action="#" method="post">
     <fieldset>
         <legend>Details:</legend>
         <div class="label-input-wrapper">
@@ -30,19 +31,20 @@ if (!isset($studentModel)) {
         </div>
         <div class="label-input-wrapper">
             <label for="date-of-birth">Date of Birth: </label>
-            <input type="date" name="date-of-birth" >
+            <input type="date" name="date-of-birth"
+                <?php if(!$addingStudent) echo "value='{$studentModel->getDateOfBirth()}'"; ?>>
         </div>
         <div class="label-input-wrapper">
-            <label for="date-of-birth">ID Number: </label>
-            <input type="text" name="id-number" >
+            <label for="id-number">ID Number: </label>
+            <input type="text" name="id-number"
+                <?php if(!$addingStudent) echo "value='{$studentModel->getIdNumber()}'"; ?>>
         </div>
         <div class="label-input-wrapper">
             <label for="level">Level: </label>
-            <input type="number" name="level" >
+            <input type="number" name="level"
+                <?php if(!$addingStudent) echo "value='{$studentModel->getLevel()}'"; ?>>
         </div>
     </fieldset>
-    <fieldset>
-        <legend>Address</legend>
-    </fieldset>
-    <input type="submit" value="submit" name="">
+    <?php if($addingStudent) include "address_form.php"; ?>
+    <input type="submit" value="<?php if(!$addingStudent) echo "Update" ?>" name="<?php if(!$addingStudent) echo "update_student_details" ?>">
 </form>

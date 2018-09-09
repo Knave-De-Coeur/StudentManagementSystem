@@ -5,6 +5,7 @@
  * Date: 08/09/2018
  * Time: 12:09
  */
+ob_start();
 include "db_connection.php";
 ?>
 

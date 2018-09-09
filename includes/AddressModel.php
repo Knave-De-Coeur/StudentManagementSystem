@@ -8,6 +8,7 @@
 
 class AddressModel extends Data
 {
+    public $StudentId;
     public $Address1;
     public $Address2;
     public $City;
@@ -22,8 +23,9 @@ class AddressModel extends Data
      * @param $State
      * @param $ZipPostalCode
      */
-    public function __construct($Id, $Address1, $Address2, $City, $State, $ZipPostalCode)
+    public function __construct($StudentId, $Id, $Address1, $Address2, $City, $State, $ZipPostalCode)
     {
+        $this->StudentId = $StudentId;
         $this->Address1 = $Address1;
         $this->Address2 = $Address2;
         $this->City = $City;

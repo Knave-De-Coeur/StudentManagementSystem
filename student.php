@@ -8,11 +8,16 @@
 include "includes/db_connection.php";
 include "includes/functions.php";
 include "includes/StudentModel.php";
+include "includes/AddressModel.php";
 
 
 if(!isset($_GET['student'])) {
     die("Something Went Wrong");
 }
+
+// This will check if we've posted to update so then, the updated values will be outputted
+UpdateStudent($_GET['student']);
+
 
 $studentId = $_GET['student'];
 
@@ -26,6 +31,8 @@ if (!$queryTheStudentId) {
 
 $student = $queryTheStudentId->fetch_assoc();
 
+$addressQuery = "";
+
 $studentModel = new StudentModel($student['Id'], $student['Name'], $student['Surname'], $student['DateOfBirth'], $student['IDNumber'], $student['Level'])
 
 ?>
@@ -35,3 +42,4 @@ $studentModel = new StudentModel($student['Id'], $student['Name'], $student['Sur
 <h2>Student Id: <?php echo $student['Id']; ?></h2>
 
 <?php include "includes/student_form.php"; ?>
+
