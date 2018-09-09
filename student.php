@@ -7,7 +7,7 @@
  */
 include "includes/header.php";
 include "includes/StudentModel.php";
-include "includes/AddressModel.php";
+include "includes/AddressItemModel.php";
 
 
 if(!isset($_GET['student'])) {

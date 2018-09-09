@@ -3,16 +3,41 @@
  * Created by PhpStorm.
  * User: alexa
  * Date: 09/09/2018
- * Time: 13:36
+ * Time: 22:46
  */
 
-class AddressModel extends Data
+class AddressItemModel extends Data
 {
     public $StudentId;
     public $Address1;
     public $Address2;
     public $City;
     public $State;
+    public $ZipPostalCode;
+    public $DisplayOrder;
+
+    /**
+     * AddressItemModel constructor.
+     * @param $StudentId
+     * @param $Address1
+     * @param $Address2
+     * @param $City
+     * @param $State
+     * @param $ZipPostalCode
+     * @param $DisplayOrder
+     */
+    public function __construct($Id, $StudentId, $Address1, $Address2, $City, $State, $ZipPostalCode, $DisplayOrder)
+    {
+        $this->StudentId = $StudentId;
+        $this->Address1 = $Address1;
+        $this->Address2 = $Address2;
+        $this->City = $City;
+        $this->State = $State;
+        $this->ZipPostalCode = $ZipPostalCode;
+        $this->DisplayOrder = $DisplayOrder;
+        parent::setId($Id);
+    }
+
 
     /**
      * @return mixed
@@ -29,28 +54,6 @@ class AddressModel extends Data
     {
         $this->StudentId = $StudentId;
     }
-    public $ZipPostalCode;
-
-    /**
-     * AddressModel constructor.
-     * @param $Address1
-     * @param $Address2
-     * @param $City
-     * @param $State
-     * @param $ZipPostalCode
-     */
-    public function __construct($StudentId, $Id, $Address1, $Address2, $City, $State, $ZipPostalCode)
-    {
-        $this->StudentId = $StudentId;
-        $this->Address1 = $Address1;
-        $this->Address2 = $Address2;
-        $this->City = $City;
-        $this->State = $State;
-        $this->ZipPostalCode = $ZipPostalCode;
-        parent::__construct($Id);
-
-    }
-
 
     /**
      * @return mixed
@@ -131,5 +134,22 @@ class AddressModel extends Data
     {
         $this->ZipPostalCode = $ZipPostalCode;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDisplayOrder()
+    {
+        return $this->DisplayOrder;
+    }
+
+    /**
+     * @param mixed $DisplayOrder
+     */
+    public function setDisplayOrder($DisplayOrder): void
+    {
+        $this->DisplayOrder = $DisplayOrder;
+    }
+
 
 }
