@@ -21,22 +21,22 @@
         <div class="label-input-wrapper">
             <label for="name">Name: </label>
             <input type="text" name="name" placeholder="Enter Name"
-            <?php if(!$addingStudent) echo "value='{$studentModel->getName()}'"; ?>">
+            <?php if(!$addingStudent) echo "value='{$studentModel->getName()}'"; ?> required>
         </div>
         <div class="label-input-wrapper">
             <label for="surname">Surname: </label>
             <input type="text" name="surname" placeholder="Enter Surname"
-                <?php if(!$addingStudent) echo "value='{$studentModel->getSurname()}'"; ?>>
+                <?php if(!$addingStudent) echo "value='{$studentModel->getSurname()}'"; ?> required>
         </div>
         <div class="label-input-wrapper">
             <label for="date-of-birth">Date of Birth: </label>
             <input type="date" name="date-of-birth"
-                <?php if(!$addingStudent) echo "value='{$studentModel->getDateOfBirth()}'"; ?>>
+                <?php if(!$addingStudent) echo "value='{$studentModel->getDateOfBirth()}'"; ?> required>
         </div>
         <div class="label-input-wrapper">
             <label for="id-number">ID Number: </label>
             <input type="text" name="id-number" placeholder="Enter Id Number"
-                <?php if(!$addingStudent) echo "value='{$studentModel->getIdNumber()}'"; ?>>
+                <?php if(!$addingStudent) echo "value='{$studentModel->getIdNumber()}'"; ?> required>
         </div>
 
             <?php
@@ -54,7 +54,7 @@
         <div class="label-input-wrapper">
             <label for="level">Level: </label>
             <input type="number" name="level" placeholder="Enter Current Level"
-                <?php if(!$addingStudent) echo "value='{$studentModel->getLevel()}'"; ?>>
+                <?php if(!$addingStudent) echo "value='{$studentModel->getLevel()}'"; ?> required>
         </div>
     </fieldset>
     <?php if($addingStudent) include "address_form.php"; ?>

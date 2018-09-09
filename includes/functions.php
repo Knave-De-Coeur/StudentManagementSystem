@@ -70,22 +70,23 @@ function GetStudentByID($studentId){
 function UpdateStudent($studentId) {
     global $connection;
     if(isset($_POST['update_student_details'])) {
+        $query = "UPDATE students SET Name=?, Surname=?, DateOfBirth=?, IDNumber=?, Level=?  WHERE Id=?";
+        $prepareUpdateStudentQuery  = $connection->prepare($query);
+        $prepareUpdateStudentQuery->bind_param("ssssii", $name, $surname, $dateOfBirth, $idNumber, $level, $studentId);
+
+
         $name = $_POST['name'];
         $surname = $_POST['surname'];
         $dateOfBirth = $_POST['date-of-birth'];
         $idNumber = $_POST['id-number'];
         $level = $_POST['level'];
-        $query = "UPDATE students SET Name = '{$name}', Surname = '{$surname}', DateOfBirth = '{$dateOfBirth}', IDNumber = '{$idNumber}', Level = {$level} WHERE Id = {$studentId}; ";
 
-        $queryUpdateStudent = $connection->query($query);
-
-        if (!$queryUpdateStudent) {
-            die('Query Failed ' . $connection->error($queryUpdateStudent));
-        } else {
+        if ($prepareUpdateStudentQuery->execute()) {
             echo "Successful Update!";
+        } else {
+            die('Query Failed ' . $connection->error);
+
         }
-
-
     }
 }
 
@@ -186,4 +187,47 @@ function CreateAddress($studentIdToRelate) {
     }
 
     $prepareInsertAddressQuery->close();
+}
+
+function GetAddressByID($addressId){
+    global $connection;
+
+    $query = "SELECT * FROM address Where id = {$addressId}";
+
+    $queryTheAddressId = $connection->query($query);
+
+    if (!$queryTheAddressId) {
+        die("Query Failed " . $connection->error);
+    }
+
+    $address = $queryTheAddressId->fetch_assoc();
+
+    $studentModel = new AddressModel($address['Id'], $address['StudentId'], $address['Address1'], $address['Address2'],
+                                    $address['City'], $address['State'], $address['ZipPostalCode'], $address['DisplayOrder']);
+
+    return $studentModel;
+}
+
+function UpdateAddress($addressId) {
+    global $connection;
+    if(isset($_POST['update_student_address'])) {
+        $query = "UPDATE address SET Address1=?, Address2=?, City=?, State=?, ZipPostalCode=?, DisplayOrder=?  WHERE Id=?";
+        $prepareUpdateAddressQuery  = $connection->prepare($query);
+        $prepareUpdateAddressQuery->bind_param("sssssii", $address1, $address2, $city, $state, $postcode, $displayOrder, $addressId);
+
+
+        $address1 = $_POST['address1'];
+        $address2 = $_POST['address2'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $postcode = $_POST['post-code'];
+        $displayOrder = $_POST['display-order'];
+
+        if ($prepareUpdateAddressQuery->execute()) {
+            echo "Successful Update!";
+        } else {
+            die('Query Failed ' . $connection->error);
+
+        }
+    }
 }

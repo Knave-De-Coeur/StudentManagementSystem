@@ -13,7 +13,7 @@
 
 $studentId = $studentModel->getId();
 
-$query = "SELECT * FROM address where StudentId = {$studentId}";
+$query = "SELECT * FROM address where StudentId = {$studentId} ORDER BY DisplayOrder; ";
 
 $queryAddresesByStudentId = $connection->query($query);
 
@@ -29,7 +29,7 @@ if ($queryAddresesByStudentId->num_rows > 0) {
     <?php
     while($row = $queryAddresesByStudentId->fetch_assoc()) {
             $addressNumber++;
-            $address = new AddressModel($studentId, $row['Id'], $row['Address1'], $row['Address2'], $row['City'], $row['State'], $row['ZipPostalCode'], $row['DisplayOrder']);
+            $address = new AddressModel($row['Id'], $studentId, $row['Address1'], $row['Address2'], $row['City'], $row['State'], $row['ZipPostalCode'], $row['DisplayOrder']);
             $displayOrder = $row['DisplayOrder'];
             ?>
 
@@ -43,6 +43,7 @@ if ($queryAddresesByStudentId->num_rows > 0) {
                     <span><?php echo $address->getZipPostalCode(); ?></span>
                 </address>
                 <div><strong>Display Order: </strong><?php echo $address->getDisplayOrder(); ?></div>
+                <a href="student_address.php?address=<?php echo $address->getId(); ?>">Edit Address Details</a>
             </div>
 
             <?php
