@@ -16,8 +16,9 @@ include "ClassModel.php";
 $studentId = $studentModel->getId();
 
 $query = "SELECT student_class_mapper.DisplayOrder, class.Id, class.Room, class.Faculty, class.ShortDescription, class.FullDescription, class.Lecturer 
-FROM ((student_class_mapper INNER JOIN students ON student_class_mapper.StudentId = students.Id) 
-INNER JOIN class ON student_class_mapper.StudentId = class.Id) WHERE student_class_mapper.StudentId = {$studentId} ORDER BY student_class_mapper.DisplayOrder; ";
+FROM student_class_mapper INNER JOIN class ON student_class_mapper.classId = class.Id 
+WHERE student_class_mapper.StudentId = {$studentId} 
+ORDER BY student_class_mapper.DisplayOrder; ";
 
 $queryStudentClasses = $connection->query($query);
 

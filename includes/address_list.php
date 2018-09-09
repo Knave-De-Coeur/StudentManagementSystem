@@ -29,7 +29,7 @@ if ($queryAddresesByStudentId->num_rows > 0) {
     <?php
     while($row = $queryAddresesByStudentId->fetch_assoc()) {
             $addressNumber++;
-            $address = new AddressItemModel($studentId, $row['Id'], $row['Address1'], $row['Address2'], $row['City'], $row['State'], $row['ZipPostalCode'], $row['DisplayOrder']);
+            $address = new AddressModel($studentId, $row['Id'], $row['Address1'], $row['Address2'], $row['City'], $row['State'], $row['ZipPostalCode'], $row['DisplayOrder']);
             $displayOrder = $row['DisplayOrder'];
             ?>
 

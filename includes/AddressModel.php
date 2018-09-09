@@ -6,7 +6,7 @@
  * Time: 22:46
  */
 
-class AddressItemModel extends Data
+class AddressModel extends Data
 {
     public $StudentId;
     public $Address1;
@@ -17,7 +17,7 @@ class AddressItemModel extends Data
     public $DisplayOrder;
 
     /**
-     * AddressItemModel constructor.
+     * AddressModel constructor.
      * @param $StudentId
      * @param $Address1
      * @param $Address2
