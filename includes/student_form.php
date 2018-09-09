@@ -6,7 +6,6 @@
  * Time: 13:01
  */
 
-
     $addingStudent = false;
 
     if (!isset($studentModel)) {
@@ -36,15 +35,38 @@
         </div>
         <div class="label-input-wrapper">
             <label for="id-number">ID Number: </label>
-            <input type="text" name="id-number"
+            <input type="text" name="id-number" placeholder="Enter Id Number"
                 <?php if(!$addingStudent) echo "value='{$studentModel->getIdNumber()}'"; ?>>
         </div>
         <div class="label-input-wrapper">
+            <label for="class">Class: </label>
+            <?php
+
+            GetAllClassesAndOutputSelect()
+
+            ?>
+        </div>
+        <div class="label-input-wrapper">
             <label for="level">Level: </label>
-            <input type="number" name="level"
+            <input type="number" name="level" placeholder="Enter Current Level"
                 <?php if(!$addingStudent) echo "value='{$studentModel->getLevel()}'"; ?>>
         </div>
     </fieldset>
     <?php if($addingStudent) include "address_form.php"; ?>
-    <input type="submit" value="<?php if(!$addingStudent) echo "Update" ?>" name="<?php if(!$addingStudent) echo "update_student_details" ?>">
+    <?php
+
+    $formValue = "";
+    $submitName = "";
+
+    if(!$addingStudent) {
+        $submitName = "update_student_details";
+        $formValue = "Update";
+    } else {
+        $submitName = "add_student";
+
+        $formValue = "Add";
+    }
+
+    ?>
+    <input type="submit" value="<?php  echo $formValue ?>" name="<?php echo $submitName; ?>">
 </form>

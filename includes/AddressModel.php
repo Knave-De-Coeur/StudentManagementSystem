@@ -13,6 +13,22 @@ class AddressModel extends Data
     public $Address2;
     public $City;
     public $State;
+
+    /**
+     * @return mixed
+     */
+    public function getStudentId()
+    {
+        return $this->StudentId;
+    }
+
+    /**
+     * @param mixed $StudentId
+     */
+    public function setStudentId($StudentId): void
+    {
+        $this->StudentId = $StudentId;
+    }
     public $ZipPostalCode;
 
     /**

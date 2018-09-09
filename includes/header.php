@@ -7,6 +7,7 @@
  */
 ob_start();
 include "db_connection.php";
+include "functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,5 +15,6 @@ include "db_connection.php";
 <head>
     <meta charset="UTF-8">
     <title>Student Management System</title>
+    <script src="Resources/Script.js"></script>
 </head>
 <body>
