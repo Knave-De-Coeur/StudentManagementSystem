@@ -1,6 +1,6 @@
 <?php include "includes/header.php"; ?>
 
-<h1>Students</h1>
+<h2>Student:</h2>
 <p> Here you'll find a list overview of student details that can be managed: </p>
 
 <?php include "includes/student-list-table.php"; ?>

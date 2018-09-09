@@ -8,7 +8,7 @@
 include "ClassModel.php";
 ?>
 
-<h2>Student's Classes</h2>
+<h2>Students Classes: </h2>
 
 
 <?php
@@ -40,8 +40,8 @@ while($row = $queryStudentClasses->fetch_assoc()) {
         <div class="property"><strong>Faculty: </strong><?php echo $class->getFaculty(); ?></div>
         <div class="property"><strong>Overview: </strong><?php echo $class->getShortDescription(); ?></div>
         <div class="property"><strong>Lecturer: </strong><?php echo $class->getLecturer(); ?></div>
-        <a href="Class.php?id=<?php echo $class->getId(); ?>">View Class Details</a>
-        <a href="remove_student_class.php?studentclass=<?php echo $class->getId(); ?>">Remove from class</a>
+<!--        <a href="Class.php?id=--><?php //echo $class->getId(); ?><!--">View Class Details</a>-->
+<!--        <a href="remove_student_class.php?studentclass=--><?php //echo $class->getId(); ?><!--">Remove from class</a>-->
     </div>
 
     <?php

@@ -5,7 +5,7 @@
 
 <?php CreateStudentAndRelations(); ?>
 
-<h1>Add a new Student: </h1>
+<h2>Add a new Student: </h2>
 
 <?php include "includes/student_form.php"; ?>
 

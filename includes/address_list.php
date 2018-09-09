@@ -7,7 +7,7 @@
  */
 ?>
 
-<h3>Student's Address's</h3>
+<h2>Student's Addresses:</h2>
 
 <?php
 

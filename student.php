@@ -22,9 +22,9 @@ $studentModel = GetStudentByID($_GET['student']);
 
 ?>
 
-<h1>Student Details</h1>
+<h2>Student Details</h2>
 
-<h2>Student Id: <?php echo $studentModel->getId(); ?></h2>
+<h3>Student Id: <?php echo $studentModel->getId(); ?></h3>
 
 <?php include "includes/student_form.php"; ?>
 

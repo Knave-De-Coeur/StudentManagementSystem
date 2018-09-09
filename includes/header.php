@@ -18,3 +18,5 @@ include "functions.php";
     <script src="Resources/Script.js"></script>
 </head>
 <body>
+
+<h1><a href="index.php">Student Management System</a></h1>
