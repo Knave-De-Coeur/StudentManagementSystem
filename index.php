@@ -8,13 +8,13 @@
 
     $query = "SELECT * FROM students;";
 
-    $queryAllStudents = mysqli_query($connection, $query);
+    $queryAllStudents = $connection->query($query);
 
     if (!$queryAllStudents) {
-        die("QUERY FAILED " . mysqli_error($connection));
+        die("QUERY FAILED " . $connection->error);
     }
 
-    $numOfStudents = mysqli_num_rows($queryAllStudents);
+    $numOfStudents = $queryAllStudents->num_rows ;
 
     if ($numOfStudents == 0) {
         echo "<h2>There are currently no students as of yet.</h2>";
@@ -34,7 +34,7 @@
             <tbody>
                 <?php
 
-                    while ($row = mysqli_fetch_assoc($queryAllStudents)){
+                    while ($row  = $queryAllStudents->fetch_assoc()){
                         $id = $row['Id'];
                         $name = $row['Name'];
                         $surname = $row['Surname'];
@@ -49,8 +49,8 @@
                             <td><?php echo $surname; ?></td>
                             <td><?php echo $level; ?></td>
                             <td><?php echo "Class name"; ?></td>
-                            <td><a href="student.php">View <?php echo $name; ?>'s profile</a></td>
-                            <td><a href="delete_student.php">Delete</a></td>
+                            <td><a href="student.php?student=<?php echo $id ?>">View <?php echo $name; ?>'s profile</a></td>
+                            <td><a href="index.php?delete<?php echo $id ?>">Delete</a></td>
                         </tr>
 
                         <?php
@@ -65,8 +65,17 @@
 </div>
 
 <div class="button-list-wrapper">
-    <a href="add_student.php">Add New Student</a>
+    <a href="index?add_student=true.php">Add New Student</a>
 </div>
+
+
+<?php
+
+if(isset($_GET['add_student'])) {
+    include "includes/student_form.php";
+}
+
+?>
 
 
 
