@@ -28,4 +28,6 @@ $studentModel = GetStudentByID($_GET['student']);
 
 <?php include "includes/student_form.php"; ?>
 
+<?php include "includes/address_list.php"; ?>
+
 <?php include "includes/footer.php"; ?>

@@ -152,3 +152,7 @@ function CreateAddress($studentIdToRelate) {
         die("Insert AddressQuery Failed " . $connection->error);
     }
 }
+
+function GetAddressesByStudentId($studentId) {
+
+}
