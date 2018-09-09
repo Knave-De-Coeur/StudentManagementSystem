@@ -15,7 +15,7 @@ function CreateStudentAndRelations() {
         // insert student record
         $newStudentId = CreateStudent();
 
-        // isnert address and relate it to student
+        // insert address and relate it to student
         CreateAddress($newStudentId);
 
         // class data
@@ -31,19 +31,20 @@ function CreateStudent() {
     global $connection;
 
     $query = "INSERT INTO students (Name, Surname, DateOfBirth, IDNumber, Level) VALUES (?, ?, ?, ?, ?)";
-    $prepareQuery = $connection->prepare($query);
-    $prepareQuery->bind_param("ssbsi", $studentName, $studentSurname, $studentDateOfBirth, $studentIdNumber, $studentLevel);
+    $prepareInsertStudentQuery = $connection->prepare($query);
+    $prepareInsertStudentQuery->bind_param("ssssi", $studentName, $studentSurname, $studentDateOfBirth, $studentIdNumber, $studentLevel);
 
     $studentName = $_POST['name'];
     $studentSurname = $_POST['surname'];
     $studentDateOfBirth = date("Y-m-d", strtotime($_POST['date-of-birth']));
     $studentIdNumber = $_POST['id-number'];
     $studentLevel = $_POST['level'];
-    $prepareQuery->execute();
 
-    if(!$prepareQuery->execute()) {
+    if(!$prepareInsertStudentQuery->execute()) {
         die("Insert StudentQuery Failed " . $connection->error);
     }
+
+    $prepareInsertStudentQuery->close();
 
     return $connection->insert_id;
 }
@@ -168,23 +169,21 @@ function DeleteStudentClassMapper($id) {
 // Address Functions
 function CreateAddress($studentIdToRelate) {
     global $connection;
-    
+
+    $query = "INSERT INTO address (StudentId, Address1, Address2, City, State, ZipPostalCode) VALUES (?, ?, ?, ?, ?, ?)";
+    $prepareInsertAddressQuery = $connection->prepare($query);
+    $prepareInsertAddressQuery->bind_param("isssss", $studentIdToRelate, $address1, $address2, $city, $state, $postcode);
+
     $address1 = $_POST['address1'];
     $address2 = $_POST['address2'];
     $city = $_POST['city'];
     $state = $_POST['state'];
     $postcode = $_POST['post-code'];
 
-    $query = "INSERT INTO address (StudentId, Address1, Address2, City, State, ZipPostalCode) ";
-    $query .= "VALUES ($studentIdToRelate, '$address1', '$address2', '$city', '$state', '$postcode'); ";
+    if(!$prepareInsertAddressQuery->execute()){
 
-    $queryInsertAddress = $connection->query($query);
-
-    if(!$queryInsertAddress) {
-        die("Insert AddressQuery Failed " . $connection->error);
+        die("Query InsertAddressQuery Failed " . $connection->error);
     }
-}
 
-function GetAddressesByStudentId($studentId) {
-
+    $prepareInsertAddressQuery->close();
 }

@@ -8,7 +8,7 @@
 $addingAddress = false;
 
 if (!isset($addressModel)) {
-    $addressModel = new AddressModel("", "", "", "", "", "", "");
+    $addressModel = new AddressModel("", "", "", "", "", "", "", "");
     $addingAddress = true;
 }
 ?>
