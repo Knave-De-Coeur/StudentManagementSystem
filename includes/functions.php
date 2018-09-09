@@ -27,19 +27,25 @@ function CreateStudentAndRelations() {
 
 function CreateStudent() {
     global $connection;
+
+    $query = "INSERT INTO students (Name, Surname, DateOfBirth, IDNumber, Level) VALUES (?, ?, ?, ?, ?)";
+    $prepareQuery = $connection->prepare($query);
+    $prepareQuery->bind_param("ssbsi", $studentName, $studentSurname, $studentDateOfBirth, $studentIdNumber, $studentLevel);
+
     $studentName = $_POST['name'];
     $studentSurname = $_POST['surname'];
     $studentDateOfBirth = date("Y-m-d", strtotime($_POST['date-of-birth']));
-//    $dt = DateTime::createFromFormat('d/m/Y', $_POST['date-of-birth']);
     $studentIdNumber = $_POST['id-number'];
     $studentLevel = $_POST['level'];
+    $prepareQuery->execute();
 
-    $query = "INSERT INTO students (Name, Surname, DateOfBirth, IDNumber, Level) ";
-    $query .= "VALUES ('$studentName', '$studentSurname', $studentDateOfBirth, '$studentIdNumber', $studentLevel); ";
 
-    $queryInsertStudent = $connection->query($query);
+//    $query .= "VALUES ('$studentName', '$studentSurname', $studentDateOfBirth, '$studentIdNumber', $studentLevel); ";
+//
+//    $queryInsertStudent = $connection->prepare($query);
+//    $queryInsertStudent->bind_param($query);
 
-    if(!$queryInsertStudent) {
+    if(!$prepareQuery->execute()) {
         die("Insert StudentQuery Failed " . $connection->error);
     }
 
@@ -120,7 +126,7 @@ function GetAllClassesAndOutputSelect() {
     }
 
     if($queryAllClasses->num_rows > 0) {
-        echo "<select name='Class'>";
+        echo "<select name='class'>";
 
         while($row = $queryAllClasses->fetch_assoc()) {
             $id = $row['Id'];
