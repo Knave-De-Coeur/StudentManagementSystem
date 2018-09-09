@@ -167,6 +167,12 @@ function DeleteStudentClassMapper($id) {
 
 }
 
+// TODO: Create function to insert Class
+
+// TODO: Create function to update Class
+
+// TODO: Create function to grab all the students attending the class
+
 // Address Functions
 function CreateAddress($studentIdToRelate) {
     global $connection;
@@ -231,3 +237,5 @@ function UpdateAddress($addressId) {
         }
     }
 }
+
+// TODO: function to delete adresses whilst making sure one is still present for each student
