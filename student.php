@@ -30,4 +30,6 @@ $studentModel = GetStudentByID($_GET['student']);
 
 <?php include "includes/address_list.php"; ?>
 
+<?php include "includes/class_list.php"; ?>
+
 <?php include "includes/footer.php"; ?>

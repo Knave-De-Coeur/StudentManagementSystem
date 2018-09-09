@@ -10,24 +10,63 @@ class ClassModel extends Data
 {
     public $Room;
     public $Faculty;
-    public $Description;
+    public $ShortDescription;
+    public $FullDescription;
     public $Lecturer;
 
     /**
      * ClassModel constructor.
      * @param $Room
      * @param $Faculty
-     * @param $Description
+     * @param $ShortDescription
+     * @param $FullDescription
      * @param $Lecturer
      */
-    public function __construct($Id, $Room, $Faculty, $Description, $Lecturer)
+    public function __construct($Id, $Room, $Faculty, $ShortDescription, $FullDescription, $Lecturer)
     {
         $this->Room = $Room;
         $this->Faculty = $Faculty;
-        $this->Description = $Description;
+        $this->ShortDescription = $ShortDescription;
+        $this->FullDescription = $FullDescription;
         $this->Lecturer = $Lecturer;
         parent::__construct($Id);
+
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getShortDescription()
+    {
+        return $this->ShortDescription;
+    }
+
+    /**
+     * @param mixed $ShortDescription
+     */
+    public function setShortDescription($ShortDescription): void
+    {
+        $this->ShortDescription = $ShortDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFullDescription()
+    {
+        return $this->FullDescription;
+    }
+
+    /**
+     * @param mixed $FullDescription
+     */
+    public function setFullDescription($FullDescription): void
+    {
+        $this->FullDescription = $FullDescription;
+    }
+
+
 
 
     /**
@@ -62,21 +101,6 @@ class ClassModel extends Data
         $this->Faculty = $Faculty;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->Description;
-    }
-
-    /**
-     * @param mixed $Description
-     */
-    public function setDescription($Description): void
-    {
-        $this->Description = $Description;
-    }
 
     /**
      * @return mixed

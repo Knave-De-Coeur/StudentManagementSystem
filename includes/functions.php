@@ -19,7 +19,9 @@ function CreateStudentAndRelations() {
         CreateAddress($newStudentId);
 
         // class data
-        $class = $_POST['class'];
+        $classId = $_POST['class'];
+
+        CreateStudentClassMapper($newStudentId, $classId);
 
         echo "Student Successfully Added!";
     }
@@ -38,12 +40,6 @@ function CreateStudent() {
     $studentIdNumber = $_POST['id-number'];
     $studentLevel = $_POST['level'];
     $prepareQuery->execute();
-
-
-//    $query .= "VALUES ('$studentName', '$studentSurname', $studentDateOfBirth, '$studentIdNumber', $studentLevel); ";
-//
-//    $queryInsertStudent = $connection->prepare($query);
-//    $queryInsertStudent->bind_param($query);
 
     if(!$prepareQuery->execute()) {
         die("Insert StudentQuery Failed " . $connection->error);
@@ -138,6 +134,36 @@ function GetAllClassesAndOutputSelect() {
 
 }
 
+function CreateStudentClassMapper($studentId, $classId) {
+    global $connection;
+
+    $query = "INSERT INTO student_class_mapper (StudentId, ClassId, DisplayOrder) ";
+    $query .= "VALUES ($studentId, $classId, 0); ";
+
+    $queryInsertStudentClassMapper = $connection->query($query);
+
+    if(!$queryInsertStudentClassMapper) {
+        die("Query InsertStudentClass Failed " . $connection->error);
+    }
+}
+
+function DeleteStudentClassMapper($id) {
+    global $connection;
+
+    $query = "DELETE FROM student_class_mapper WHERE id = {$id}; ";
+
+    $queryRemoveStudentClassMapper = $connection->query($query);
+
+    if(!$queryRemoveStudentClassMapper) {
+        die("Query DeleteStudentClass Failed " . $connection->error);
+    } else {
+        echo "Deletion successful!";
+    }
+
+    header("Location: index.php");
+
+
+}
 
 // Address Functions
 function CreateAddress($studentIdToRelate) {

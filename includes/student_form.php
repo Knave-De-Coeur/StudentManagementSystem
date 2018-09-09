@@ -38,14 +38,19 @@
             <input type="text" name="id-number" placeholder="Enter Id Number"
                 <?php if(!$addingStudent) echo "value='{$studentModel->getIdNumber()}'"; ?>>
         </div>
-        <div class="label-input-wrapper">
-            <label for="class">Class: </label>
+
             <?php
 
-            GetAllClassesAndOutputSelect()
+                if($addingStudent) {
+                    ?>
+                        <div class="label-input-wrapper">
+                            <label for="class">Class: </label>
+                            <?php GetAllClassesAndOutputSelect(); ?>
+                        </div>
 
+                    <?php
+                }
             ?>
-        </div>
         <div class="label-input-wrapper">
             <label for="level">Level: </label>
             <input type="number" name="level" placeholder="Enter Current Level"
